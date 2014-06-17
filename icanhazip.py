@@ -7,10 +7,9 @@ config_file = 'icanhazip.ini'
 
 def get_ip_address():
     request = urllib.request.Request('http://icanhazip.com')
-    response = urllib.request.urlopen(request)
-    ip_addr = str(response.read(), 'utf-8').replace('\n', '')
-    response.close()
-    return ip_addr
+    with urllib.request.urlopen(request) as response:
+        ip_addr = str(response.read(), 'utf-8')
+    return ip_addr.replace('\n', '')
 
 def send_email(from_addr, to_addr, subject, body, server, port):
     message = MIMEText(body)
