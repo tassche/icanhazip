@@ -21,12 +21,13 @@ def send_email(from_addr, to_addr, subject, body, server, port):
 
 def read_config():
     config = configparser.ConfigParser()
-    config.read(config_file)
+    with open(config_file, 'rt') as file:
+        config.read_file(file)
     return config
 
 def write_config(config):
-    with open(config_file, 'w') as ini:
-        config.write(ini)
+    with open(config_file, 'w') as file:
+        config.write(file)
 
 if __name__ == '__main__':
     config = read_config()
