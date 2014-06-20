@@ -42,7 +42,7 @@ if __name__ == '__main__':
     ip_addr = get_ip_address()
 
     if ip_addr != current_ip_addr:
-        email = config['e-mail']
+        email = config['email']
         subject = email['subject'].format(ip=ip_addr)
         body = email['body'].format(ip=ip_addr)
         send_email(email['from'], email['to'], subject, body, 
